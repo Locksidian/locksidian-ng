@@ -3,22 +3,25 @@
 <head>
 	<title>locksidian-ng</title>
 	<base href="/">
-	
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	
+
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	
+
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" />
+
+	<script type="text/javascript" src="assets/js/particles.min.js"></script>
 </head>
 <body>
 	<app-root>
-		<div id="app-loading">
-			<img src="assets/img/loading.svg" />
-		</div>
+		<div id="particles-js"></div>
+		<img id="app-loading" src="assets/img/loading.svg" />
+
+		<script type="text/javascript">
+			particlesJS.load('particles-js', '/assets/js/particles.json');
+		</script>
 	</app-root>
-	
-	<script type="text/javascript" src="assets/js/particles.min.js"></script>
 </body>
 </html>
