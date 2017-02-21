@@ -1,1 +1,51 @@
-<router-outlet></router-outlet>
+<md-sidenav-container>
+	<md-sidenav #sidenav mode="side" opened="true" *ngIf="showMenu()" class="hide-on-phones">
+		<div id="sidenav-header">
+			<md-icon>lock</md-icon>
+		</div>
+		
+		<md-list id="sidenav-content">
+			<md-list-item (click)="router.navigateByUrl('/dashboard')" [ngClass]="{'selected': router.url == '/dashboard'}">
+				<md-icon>dashboard</md-icon>
+				<span>Dashboard</span>
+			</md-list-item>
+			<md-list-item (click)="router.navigateByUrl('/explorer')" [ngClass]="{'selected': router.url == '/explorer'}">
+				<md-icon>explore</md-icon>
+				<span>Explorer</span>
+			</md-list-item>
+			<md-list-item (click)="router.navigateByUrl('/peers')" [ngClass]="{'selected': router.url == '/peers'}">
+				<md-icon>supervisor_account</md-icon>
+				<span>Peers</span>
+			</md-list-item>
+			<md-list-item (click)="router.navigateByUrl('/identities')" [ngClass]="{'selected': router.url == '/identities'}">
+				<md-icon>verified_user</md-icon>
+				<span>Identity</span>
+			</md-list-item>
+		</md-list>
+		
+		<div id="sidenav-footer">
+			Footer
+		</div>
+	</md-sidenav>
+	
+	<button md-icon-button [mdMenuTriggerFor]="menu" *ngIf="showMenu()" id="mobile-menu-button" class="show-on-phones">
+		<md-icon>menu</md-icon>
+	</button>
+	
+	<md-menu #menu>
+		<button md-menu-item (click)="router.navigateByUrl('/dashboard')">
+			<md-icon>dashboard</md-icon> Dashboard
+		</button>
+		<button md-menu-item (click)="router.navigateByUrl('/explorer')">
+			<md-icon>explore</md-icon> Explorer
+		</button>
+		<button md-menu-item (click)="router.navigateByUrl('/peers')">
+			<md-icon>supervisor_account</md-icon> Peers
+		</button>
+		<button md-menu-item (click)="router.navigateByUrl('/identities')">
+			<md-icon>verified_user</md-icon> Identity
+		</button>
+	</md-menu>
+	
+	<router-outlet></router-outlet>
+</md-sidenav-container>

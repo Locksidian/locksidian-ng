@@ -1,5 +1,6 @@
-declare const particlesJS: any;
 import {Component, OnInit} from "@angular/core";
+
+declare const particlesJS: any;
 
 @Component({
 	selector: 'app-root',

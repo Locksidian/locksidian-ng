@@ -19,6 +19,7 @@ import {ConnectComponent} from "./pages/connect/connect.component";
 import {RootComponent} from "./pages/root/root.component";
 import {RouterModule} from "@angular/router";
 import {AppRoutes} from "./app.routes";
+import {ShardService} from "./services/shard/shard.service";
 
 @NgModule({
 	declarations: [
@@ -43,7 +44,9 @@ import {AppRoutes} from "./app.routes";
 		MdInputModule,
 		MdRadioModule
 	],
-	providers: [],
+	providers: [
+		ShardService
+	],
 	bootstrap: [RootComponent]
 })
 export class AppModule {}
