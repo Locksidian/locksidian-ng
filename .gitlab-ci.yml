@@ -1,0 +1,16 @@
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  image: node:7.5.0
+  script:
+    - npm i -g typescript @angular/cli
+    - npm install
+    - npm run dist:prod
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
