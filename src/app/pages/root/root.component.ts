@@ -15,7 +15,12 @@ export class RootComponent {
 	) {}
 
 	showMenu(): boolean {
-		let shard = this.shardService.getShardAddress();
-		return shard != undefined && shard != null && shard.length > 0;
+		let shard = this.shardService.get();
+		return shard != undefined && shard != null;
+	}
+
+	disconnect(): void {
+		this.shardService.set(null);
+		this.router.navigateByUrl('/');
 	}
 }

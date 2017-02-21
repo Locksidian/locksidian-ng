@@ -1,19 +1,24 @@
 <div id="particles-js"></div>
 
-<md-grid-list id="shard-connect" cols="3" rowHeight="100px">
-	<md-grid-tile colspan="1">
-		<md-icon>lock</md-icon>
-	</md-grid-tile>
-	<md-grid-tile colspan="2">
-		<h3>locksidian-ng</h3>
-	</md-grid-tile>
-	
-	<md-grid-tile colspan="2">
-		<md-input-container>
-			<input mdInput type="url" placeholder="Shard address" />
-		</md-input-container>
-	</md-grid-tile>
-	<md-grid-tile>
-		<button md-button class="mat-primary">Connect</button>
-	</md-grid-tile>
-</md-grid-list>
+<form (ngSubmit)="connect(form.address.value, form.submit)" #form>
+	<md-grid-list id="shard-connect" cols="3" rowHeight="100px">
+		<md-grid-tile colspan="1">
+			<md-icon>lock</md-icon>
+		</md-grid-tile>
+		<md-grid-tile colspan="2">
+			<h3>locksidian-ng</h3>
+		</md-grid-tile>
+		
+		<md-grid-tile colspan="2">
+			<md-input-container>
+				<input mdInput type="url" name="address" placeholder="Shard address" [disabled]="connecting" required />
+			</md-input-container>
+		</md-grid-tile>
+		<md-grid-tile>
+			<button md-button type="submit" name="submit" class="mat-primary" [disabled]="connecting">
+				<span *ngIf="!connecting">Connect</span>
+				<md-progress-spinner mode="indeterminate" diameter="20" *ngIf="connecting"></md-progress-spinner>
+			</button>
+		</md-grid-tile>
+	</md-grid-list>
+</form>

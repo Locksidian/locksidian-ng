@@ -5,30 +5,36 @@
 		</div>
 		
 		<md-list id="sidenav-content">
-			<md-list-item (click)="router.navigateByUrl('/dashboard')" [ngClass]="{'selected': router.url == '/dashboard'}">
+			<md-list-item (click)="router.navigateByUrl('/dashboard')" [ngClass]="{'selected': router.url == '/dashboard'}"
+						  mdTooltip="Various metrics about the current shard and the Locksidian blockchain" mdTooltipPosition="right">
 				<md-icon>dashboard</md-icon>
 				<span>Dashboard</span>
 			</md-list-item>
-			<md-list-item (click)="router.navigateByUrl('/explorer')" [ngClass]="{'selected': router.url == '/explorer'}">
+			<md-list-item (click)="router.navigateByUrl('/explorer')" [ngClass]="{'selected': router.url == '/explorer'}"
+						  mdTooltip="Explore the data stored in the blockchain" mdTooltipPosition="right">
 				<md-icon>explore</md-icon>
 				<span>Explorer</span>
 			</md-list-item>
-			<md-list-item (click)="router.navigateByUrl('/peers')" [ngClass]="{'selected': router.url == '/peers'}">
+			<md-list-item (click)="router.navigateByUrl('/peers')" [ngClass]="{'selected': router.url == '/peers'}"
+						  mdTooltip="Visualize the peers connected to this shard" mdTooltipPosition="right">
 				<md-icon>supervisor_account</md-icon>
 				<span>Peers</span>
 			</md-list-item>
-			<md-list-item (click)="router.navigateByUrl('/identities')" [ngClass]="{'selected': router.url == '/identities'}">
-				<md-icon>verified_user</md-icon>
-				<span>Identity</span>
+			<md-list-item (click)="router.navigateByUrl('/identities')" [ngClass]="{'selected': router.url == '/identities'}"
+						  mdTooltip="Manage your identities" mdTooltipPosition="right">
+				<md-icon>fingerprint</md-icon>
+				<span>Identities</span>
 			</md-list-item>
 		</md-list>
 		
 		<div id="sidenav-footer">
-			Footer
+			<button md-icon-button (click)="disconnect()" mdTooltip="Logout" mdTooltipPosition="right">
+				<md-icon>power_settings_new</md-icon>
+			</button>
 		</div>
 	</md-sidenav>
 	
-	<button md-icon-button [mdMenuTriggerFor]="menu" *ngIf="showMenu()" id="mobile-menu-button" class="show-on-phones">
+	<button md-fab [mdMenuTriggerFor]="menu" *ngIf="showMenu()" id="mobile-menu-button" class="show-on-phones mat-primary">
 		<md-icon>menu</md-icon>
 	</button>
 	
@@ -43,7 +49,10 @@
 			<md-icon>supervisor_account</md-icon> Peers
 		</button>
 		<button md-menu-item (click)="router.navigateByUrl('/identities')">
-			<md-icon>verified_user</md-icon> Identity
+			<md-icon>fingerprint</md-icon> Identities
+		</button>
+		<button md-menu-item (click)="disconnect()">
+			<md-icon>power_settings_new</md-icon> Logout
 		</button>
 	</md-menu>
 	

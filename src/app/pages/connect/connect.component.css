@@ -17,3 +17,8 @@
     -moz-box-shadow: 5px 5px 5px 0 #252525;
     box-shadow: 5px 5px 5px 0 #252525;
 }
+
+#shard-connect button md-progress-spinner {
+    width: 30px;
+    height: 30px;
+}

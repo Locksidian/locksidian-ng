@@ -13,18 +13,21 @@ import {
 	MdChipsModule,
 	MdDialogModule,
 	MdRadioModule,
-	MdInputModule
+	MdInputModule,
+	MdSnackBarModule
 } from "@angular/material";
 import {ConnectComponent} from "./pages/connect/connect.component";
 import {RootComponent} from "./pages/root/root.component";
 import {RouterModule} from "@angular/router";
 import {AppRoutes} from "./app.routes";
 import {ShardService} from "./services/shard/shard.service";
+import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 
 @NgModule({
 	declarations: [
+		RootComponent,
 		ConnectComponent,
-		RootComponent
+		DashboardComponent
 	],
 	imports: [
 		RouterModule.forRoot(AppRoutes),
@@ -42,7 +45,8 @@ import {ShardService} from "./services/shard/shard.service";
 		MdChipsModule,
 		MdDialogModule,
 		MdInputModule,
-		MdRadioModule
+		MdRadioModule,
+		MdSnackBarModule
 	],
 	providers: [
 		ShardService
