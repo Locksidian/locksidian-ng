@@ -27,6 +27,7 @@ import {PeersComponent, PeerDialog} from "./pages/peers/peers.component";
 import {LoadingComponent} from "./components/loading/loading.component";
 import {environment} from "../environments/environment";
 import {PeerService} from "./services/peers/peer.service";
+import {MetricService} from "./services/metrics/metric.service";
 
 @NgModule({
 	declarations: [
@@ -65,7 +66,8 @@ import {PeerService} from "./services/peers/peer.service";
 	],
 	providers: [
 		ShardService,
-		PeerService
+		PeerService,
+		MetricService
 	],
 	bootstrap: [RootComponent]
 })
