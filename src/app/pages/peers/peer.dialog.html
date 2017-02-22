@@ -1,0 +1,39 @@
+<h2 md-dialog-title>{{peer.identity}}</h2>
+
+<md-dialog-content>
+	<table cellspacing="15">
+		<tr>
+			<td><label for="peer-identity">Identity</label></td>
+			<td><span id="peer-identity">{{peer.identity}}</span></td>
+		</tr>
+		<tr>
+			<td><label for="peer-address">Address</label></td>
+			<td><span id="peer-address">{{peer.address}}</span></td>
+		</tr>
+		<tr>
+			<td><label for="peer-public-key">Public Key</label></td>
+			<td><span id="peer-public-key">{{peer.publicKey}}</span></td>
+		</tr>
+		
+		<tr>
+			<td><label for="peer-latitude">Latitude</label></td>
+			<td><span id="peer-latitude">{{peer.latitude}}</span></td>
+		</tr>
+		<tr>
+			<td><label for="peer-longitude">Longitude</label></td>
+			<td><span id="peer-longitude">{{peer.longitude}}</span></td>
+		</tr>
+		<tr>
+			<td><label for="peer-country">Country</label></td>
+			<td><span id="peer-country">{{peer.country}}</span></td>
+		</tr>
+		<tr>
+			<td><label for="peer-timezone">Timezone</label></td>
+			<td><span id="peer-timezone">{{peer.timeZone}}</span></td>
+		</tr>
+	</table>
+</md-dialog-content>
+
+<md-dialog-actions>
+	<button md-button class="mat-primary" md-dialog-close>Close</button>
+</md-dialog-actions>

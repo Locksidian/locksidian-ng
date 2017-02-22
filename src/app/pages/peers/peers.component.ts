@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ShardService} from "../../services/shard/shard.service";
 import {Router} from "@angular/router";
 import {PeerService} from "../../services/peers/peer.service";
-import {MdSnackBar} from "@angular/material";
+import {MdSnackBar, MdDialogRef, MdDialog} from "@angular/material";
 import {Peer} from "../../services/peers/peer.class";
 
 declare const vis: any;
@@ -26,7 +26,8 @@ export class PeersComponent implements OnInit {
 		private router: Router,
 		private shardService: ShardService,
 		private peerService: PeerService,
-		private snackBar: MdSnackBar
+		private snackBar: MdSnackBar,
+		private dialog: MdDialog
 	) {}
 
 	ngOnInit() {
@@ -56,7 +57,27 @@ export class PeersComponent implements OnInit {
 			})
 	}
 
+	showPeer(peer: Peer): void {
+		let peerDialog = this.dialog.open(PeerDialog, {
+			width: '500px'
+		});
+		peerDialog.componentInstance.peer = peer;
+
+	}
+
 	notify(message: string) {
 		this.snackBar.open(message, "Close", {duration: 5000});
 	}
+}
+
+@Component({
+	selector: 'peer-dialog',
+	templateUrl: 'peer.dialog.html',
+	styleUrls: ['peer.dialog.css']
+})
+export class PeerDialog {
+
+	public peer: Peer;
+
+	constructor(private dialogRef: MdDialogRef<PeerDialog>) {}
 }

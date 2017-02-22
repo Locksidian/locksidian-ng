@@ -23,7 +23,7 @@ import {RouterModule} from "@angular/router";
 import {AppRoutes} from "./app.routes";
 import {ShardService} from "./services/shard/shard.service";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
-import {PeersComponent} from "./pages/peers/peers.component";
+import {PeersComponent, PeerDialog} from "./pages/peers/peers.component";
 import {LoadingComponent} from "./components/loading/loading.component";
 import {environment} from "../environments/environment";
 import {PeerService} from "./services/peers/peer.service";
@@ -34,7 +34,11 @@ import {PeerService} from "./services/peers/peer.service";
 		LoadingComponent,
 		ConnectComponent,
 		DashboardComponent,
-		PeersComponent
+		PeersComponent,
+		PeerDialog
+	],
+	entryComponents: [
+		PeerDialog
 	],
 	imports: [
 		RouterModule.forRoot(AppRoutes),

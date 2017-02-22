@@ -1,0 +1,9 @@
+tr td:nth-child(even) {
+    font-size: 90%;
+}
+
+label {
+    font-weight: bold;
+    cursor: pointer;
+    font-variant: small-caps;
+}
