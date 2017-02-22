@@ -42,8 +42,8 @@ export class ConnectComponent implements OnInit {
 				this.router.navigateByUrl('/dashboard');
 			})
 			.catch((err) => {
-				console.error(err);
-				this.notify("Unable to connect to the Shard");
+				console.error(JSON.stringify(err));
+				this.notify(err.msg);
 				this.connecting = false;
 			});
 	}

@@ -6,7 +6,7 @@
 		
 		<md-list id="sidenav-content">
 			<md-list-item (click)="router.navigateByUrl('/dashboard')" [ngClass]="{'selected': router.url == '/dashboard'}"
-						  mdTooltip="Various metrics about the current shard and the Locksidian blockchain" mdTooltipPosition="right">
+						  mdTooltip="Various metrics about the current node and the Locksidian blockchain" mdTooltipPosition="right">
 				<md-icon>dashboard</md-icon>
 				<span>Dashboard</span>
 			</md-list-item>
@@ -16,7 +16,7 @@
 				<span>Explorer</span>
 			</md-list-item>
 			<md-list-item (click)="router.navigateByUrl('/peers')" [ngClass]="{'selected': router.url == '/peers'}"
-						  mdTooltip="Visualize the peers connected to this shard" mdTooltipPosition="right">
+						  mdTooltip="Visualize your peers" mdTooltipPosition="right">
 				<md-icon>supervisor_account</md-icon>
 				<span>Peers</span>
 			</md-list-item>

@@ -7,4 +7,9 @@ export class Shard {
 		this.identity = payload.identity;
 		this.publicKey = payload.publicKey;
 	}
+
+	isValid(): boolean {
+		return this.identity != null && this.identity.length == 40
+			&& this.publicKey != null && this.publicKey.length > 0;
+	}
 }

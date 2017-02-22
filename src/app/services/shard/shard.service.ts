@@ -24,8 +24,14 @@ export class ShardService {
 				this.http.get(address)
 					.map(data => data.json())
 					.subscribe(
-						payload => resolve(new Shard(payload)),
-						err => reject(err)
+						payload => {
+							let shard = new Shard(payload);
+
+							if(!shard.isValid())
+								reject({code: 1, msg: 'Remote node provided an invalid identity'});
+							resolve(shard);
+						},
+						err => reject({code: 0, msg: 'Unable to connect to the remote node', raw: err})
 					);
 			}
 			else {
