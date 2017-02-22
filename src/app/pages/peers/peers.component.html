@@ -1,0 +1,4 @@
+<app-loading *ngIf="peers == null"></app-loading>
+<sebm-google-map [latitude]="map.latitude" [longitude]="map.longitude" [zoom]="map.zoom">
+	<sebm-google-map-marker *ngFor="let peer of peers" [latitude]="peer.latitude" [longitude]="peer.longitude"></sebm-google-map-marker>
+</sebm-google-map>

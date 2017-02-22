@@ -16,18 +16,25 @@ import {
 	MdInputModule,
 	MdSnackBarModule
 } from "@angular/material";
+import {AgmCoreModule} from "angular2-google-maps/core";
 import {ConnectComponent} from "./pages/connect/connect.component";
 import {RootComponent} from "./pages/root/root.component";
 import {RouterModule} from "@angular/router";
 import {AppRoutes} from "./app.routes";
 import {ShardService} from "./services/shard/shard.service";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
+import {PeersComponent} from "./pages/peers/peers.component";
+import {LoadingComponent} from "./components/loading/loading.component";
+import {environment} from "../environments/environment";
+import {PeerService} from "./services/peers/peer.service";
 
 @NgModule({
 	declarations: [
 		RootComponent,
+		LoadingComponent,
 		ConnectComponent,
-		DashboardComponent
+		DashboardComponent,
+		PeersComponent
 	],
 	imports: [
 		RouterModule.forRoot(AppRoutes),
@@ -46,10 +53,15 @@ import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 		MdDialogModule,
 		MdInputModule,
 		MdRadioModule,
-		MdSnackBarModule
+		MdSnackBarModule,
+
+		AgmCoreModule.forRoot({
+			apiKey: environment.googleMaps.apiKey
+		})
 	],
 	providers: [
-		ShardService
+		ShardService,
+		PeerService
 	],
 	bootstrap: [RootComponent]
 })

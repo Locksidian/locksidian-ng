@@ -25,7 +25,7 @@ export class ShardService {
 					.map(data => data.json())
 					.subscribe(
 						payload => {
-							let shard = new Shard(payload);
+							let shard = new Shard(payload, address);
 
 							if(!shard.isValid())
 								reject({code: 1, msg: 'Remote node provided an invalid identity'});
@@ -38,7 +38,7 @@ export class ShardService {
 				resolve(new Shard({
 					identity: 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
 					publicKey: '6924110cde4fa051bfdc600a60620dc7aa9d3c6a'
-				}));
+				}, 'https://www.fries.io/'));
 			}
 		});
 	}
