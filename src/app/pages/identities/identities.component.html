@@ -1,0 +1,14 @@
+<app-loading *ngIf="!identities"></app-loading>
+<md-list *ngIf="identities">
+	<h2 md-header>Identities</h2>
+	<div *ngFor="let identity of identities">
+		<md-list-item>
+			<md-icon md-list-avatar>perm_identity</md-icon>
+			<h4 md-line>{{identity.hash}}</h4>
+			<button md-button (click)="exportPublicKey(identity)" mdTooltip="Export public key" mdTooltipPosition="left" >
+				<md-icon>cloud_download</md-icon>
+			</button>
+		</md-list-item>
+		<md-divider></md-divider>
+	</div>
+</md-list>

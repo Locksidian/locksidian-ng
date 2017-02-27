@@ -28,6 +28,8 @@ import {LoadingComponent} from "./components/loading/loading.component";
 import {environment} from "../environments/environment";
 import {PeerService} from "./services/peers/peer.service";
 import {MetricService} from "./services/metrics/metric.service";
+import {IdentityService} from "./services/identities/identity.service";
+import {IdentitiesComponent} from "./pages/identities/identities.component";
 
 @NgModule({
 	declarations: [
@@ -36,7 +38,8 @@ import {MetricService} from "./services/metrics/metric.service";
 		ConnectComponent,
 		DashboardComponent,
 		PeersComponent,
-		PeerDialog
+		PeerDialog,
+		IdentitiesComponent
 	],
 	entryComponents: [
 		PeerDialog
@@ -67,7 +70,8 @@ import {MetricService} from "./services/metrics/metric.service";
 	providers: [
 		ShardService,
 		PeerService,
-		MetricService
+		MetricService,
+		IdentityService
 	],
 	bootstrap: [RootComponent]
 })
