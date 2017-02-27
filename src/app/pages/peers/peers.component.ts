@@ -47,7 +47,10 @@ export class PeersComponent implements OnInit {
 				this.peers.forEach(peer => {
 					this.peerService.locate(peer)
 						.then(payload => peer.locate(payload))
-						.catch(err => console.error(JSON.stringify(err)));
+						.catch(err => {
+							console.error(JSON.stringify(err));
+							this.notify(err.msg);
+						});
 				});
 			})
 			.catch(err => {

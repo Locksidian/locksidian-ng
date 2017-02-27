@@ -1,4 +1,4 @@
-# locksidian-ng
+# Shard
 [![build status](https://gitlab.com/locksidian/locksidian-ng/badges/master/build.svg)](https://gitlab.com/locksidian/locksidian-ng/pipelines)
 
 > The one vault your data really need.

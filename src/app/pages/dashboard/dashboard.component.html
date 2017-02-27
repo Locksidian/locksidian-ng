@@ -1,6 +1,7 @@
 <div id="particles-js"></div>
 
-<md-grid-list cols="2" rowHeight="50%">
+<app-loading *ngIf="!metrics"></app-loading>
+<md-grid-list *ngIf="metrics" cols="2" rowHeight="300px">
 	<md-grid-tile>
 		<md-card>
 			<md-card-header>
@@ -10,6 +11,30 @@
 			</md-card-header>
 			<md-card-content>
 				2854
+			</md-card-content>
+		</md-card>
+	</md-grid-tile>
+	<md-grid-tile>
+		<md-card>
+			<md-card-header>
+				<md-card-title>
+					<h2>Forks</h2>
+				</md-card-title>
+			</md-card-header>
+			<md-card-content>
+				2
+			</md-card-content>
+		</md-card>
+	</md-grid-tile>
+	<md-grid-tile>
+		<md-card>
+			<md-card-header>
+				<md-card-title>
+					<h2>Peers</h2>
+				</md-card-title>
+			</md-card-header>
+			<md-card-content>
+				3
 			</md-card-content>
 		</md-card>
 	</md-grid-tile>

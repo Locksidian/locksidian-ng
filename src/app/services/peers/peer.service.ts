@@ -3,7 +3,6 @@ import {Http} from "@angular/http";
 import {ShardService} from "../shard/shard.service";
 import {Peer} from "./peer.class";
 import {environment} from "../../../environments/environment";
-import {Observable} from "rxjs";
 
 const FREEGEOIP_URL: string = "https://freegeoip.net/json/";
 
@@ -20,7 +19,7 @@ export class PeerService {
 			if(environment.production) {
 				let shard = this.shardService.get();
 
-				if (!shard)
+				if(!shard)
 					reject({code: 1, msg: 'Shard is not connected to any Locksidian node'});
 
 				this.http.get(shard.address + '/peers')

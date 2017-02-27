@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ShardService} from "../../services/shard/shard.service";
 import {MetricService} from "../../services/metrics/metric.service";
 import {MdSnackBar} from "@angular/material";
+import {Metric} from "../../services/metrics/metric.class";
 
 declare const particlesJS: any;
 
@@ -12,6 +13,8 @@ declare const particlesJS: any;
   styleUrls: ['dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+	private metrics: Array<Metric>;
 
 	constructor(
 		private router: Router,
@@ -26,5 +29,19 @@ export class DashboardComponent implements OnInit {
 		}
 
 		particlesJS.load('particles-js', 'assets/js/particles.json');
+		this.loadMetrics();
+	}
+
+	loadMetrics(): void {
+		this.metricService.getAll()
+			.then(metrics => this.metrics = metrics)
+			.catch(err => {
+				console.error(err);
+				this.notify(err.msg);
+			});
+	}
+
+	notify(message: string) {
+		this.snackBar.open(message, "Close", {duration: 5000});
 	}
 }
