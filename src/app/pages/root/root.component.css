@@ -58,6 +58,6 @@ md-sidenav {
 #mobile-menu-button {
     z-index: 999;
     position: absolute;
-    top: 10px;
-    left: 10px;
+    bottom: 15px;
+    right: 15px;
 }
