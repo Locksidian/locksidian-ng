@@ -30,6 +30,7 @@ import {PeerService} from "./services/peers/peer.service";
 import {MetricService} from "./services/metrics/metric.service";
 import {IdentityService} from "./services/identities/identity.service";
 import {IdentitiesComponent} from "./pages/identities/identities.component";
+import {ExplorerComponent} from "./pages/explorer/explorer.component";
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import {IdentitiesComponent} from "./pages/identities/identities.component";
 		DashboardComponent,
 		PeersComponent,
 		PeerDialog,
-		IdentitiesComponent
+		IdentitiesComponent,
+		ExplorerComponent
 	],
 	entryComponents: [
 		PeerDialog
