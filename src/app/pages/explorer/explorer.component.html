@@ -1,1 +1,9 @@
+<div id="sync" *ngIf="syncing">
+	<img src="assets/img/loading.svg" width="64" height="64" />
+</div>
+
 <div #explorer id="explorer"></div>
+
+<div id="panel" *ngIf="block">
+	Hash: {{block.hash}}
+</div>
