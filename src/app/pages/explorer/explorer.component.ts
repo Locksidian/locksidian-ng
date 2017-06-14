@@ -15,7 +15,7 @@ declare const vis: any;
 export class ExplorerComponent implements OnInit {
 
 	private syncing: boolean;
-	private block: Block;
+	private selectedBlock: Block;
 
 	// Vis.js network
 	@ViewChild('explorer')
@@ -36,7 +36,7 @@ export class ExplorerComponent implements OnInit {
 		}
 
 		this.redrawNetwork();
-		this.syncChain('ORIGIN');
+		this.syncChain();
 	}
 
 	redrawNetwork(): void {
@@ -75,52 +75,13 @@ export class ExplorerComponent implements OnInit {
 		network.on('select', params => this.onBlockSelected(params));
 	}
 
-	syncChain(hash: string): void {
+	syncChain(): void {
 		this.syncing = true;
+		this.nodes = [];
+		this.edges = [];
 
-		// Mocked values
-		this.nodes = [
-			{id: 1, label: 'Node 1', group: 1},
-			{id: 2, label: 'Node 2', group: 1},
-			{id: 3, label: 'Node 3', group: 2},
-			{id: 4, label: 'Node 4', group: 2},
-			{id: 5, label: 'Node 5', group: 1},
-			{id: 6, label: 'Node 6', group: 1},
-			{id: 7, label: 'Node 7', group: 1},
-			{id: 8, label: 'Node 8', group: 1},
-		];
-
-		this.edges = [
-			{from: 1, to: 2},
-			{from: 2, to: 3},
-			{from: 3, to: 4},
-			{from: 2, to: 5},
-			{from: 5, to: 6},
-			{from: 6, to: 7},
-			{from: 7, to: 8},
-		];
-
-		this.blockService.get(hash)
-			.then(block => {
-				this.nodes.push({
-					id: block.hash,
-					label: block.hash,
-					group: 1 // TODO: increment the group according to the fork depth of this block
-				});
-
-				if(block.previous) {
-					this.edges.push({
-						from: block.previous,
-						to: block.hash
-					});
-				}
-
-				this.redrawNetwork();
-
-				if(block.next) {
-					this.syncChain(block.next);
-				}
-			})
+		this.blockService.getHead()
+			.then(head => this.syncBlock(head))
 			.catch(err => {
 				console.error(JSON.stringify(err));
 				this.notify(err.msg);
@@ -130,15 +91,39 @@ export class ExplorerComponent implements OnInit {
 		this.syncing = false;
 	}
 
-	onBlockSelected(params: any) {
-		console.log('Selected: ' + params.nodes);
-
-		let blockHash = params.nodes;
-		this.blockService.get(blockHash)
+	syncBlock(hash: string) {
+		this.blockService.get(hash)
 			.then(block => {
-				this.block = block;
-				console.log(JSON.stringify(this.block));
+				this.nodes.push({
+					id: block.hash,
+					label: block.hash.substring(0, 7),
+					group: 1 // TODO: increment the group according to the fork depth of this block
+				});
+
+				if(block.next) {
+					this.edges.push({
+						from: block.hash,
+						to: block.next
+					});
+				}
+
+				this.redrawNetwork();
+
+				if(block.previous) {
+					this.syncBlock(block.previous);
+				}
 			})
+			.catch(err => {
+				console.error(JSON.stringify(err));
+				this.notify(err.msg);
+			});
+	}
+
+	onBlockSelected(params: any) {
+		let blockHash = params.nodes;
+
+		this.blockService.get(blockHash)
+			.then(block => this.selectedBlock = block)
 			.catch(err => {
 				console.error(JSON.stringify(err));
 				this.notify(err.msg);

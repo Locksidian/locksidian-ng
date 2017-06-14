@@ -12,6 +12,34 @@ export class BlockService {
 		private shardService: ShardService
 	) {}
 
+	getHead(): Promise<string> {
+		return new Promise((resolve, reject) => {
+			if(environment.production) {
+				let shard = this.shardService.get();
+
+				if(!shard)
+					reject({code: 1, msg: 'Shard is not connected to any Locksidian node'});
+
+				this.http.get(shard.address + '/blocks')
+					.map(data => data.json())
+					.subscribe(
+						payload => {
+							if(payload.head === undefined)
+								reject({code: 0, msg: 'Invalid payload received from the remote node'});
+
+							resolve(payload.head);
+						},
+						err => reject({code: 0, msg: 'Unable to connect to the remote node', raw: err})
+					)
+			}
+			else {
+				resolve(new Block({
+					'hash': '42dd8fe5ccb19ba61c4c0873d391e9879c95a64f'
+				}));
+			}
+		})
+	}
+
 	get(hash: string): Promise<Block> {
 		return new Promise((resolve, reject) => {
 			if(environment.production) {
