@@ -41,7 +41,6 @@ export class PeersComponent implements OnInit {
 	loadPeers(): void {
 		this.peerService.getAll()
 			.then(peers => {
-				console.log(JSON.stringify(peers));
 				this.peers = peers;
 
 				this.peers.forEach(peer => {

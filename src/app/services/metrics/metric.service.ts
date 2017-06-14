@@ -23,7 +23,18 @@ export class MetricService {
 				this.http.get(shard.address + '/metrics')
 					.map(data => data.json())
 					.subscribe(
-						payload => resolve(payload.map(rawMetric => new Metric(rawMetric))),
+						payload => {
+							let metrics = [];
+
+							payload.forEach(json => {
+								let metric = new Metric(json);
+
+								if(metric.isValid())
+									metrics.push(metric);
+							});
+
+							resolve(metrics);
+						},
 						err => reject({code: 0, msg: 'Unable to connect to the remote node', raw: err})
 					);
 			}

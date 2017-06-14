@@ -1,8 +1,7 @@
 export class Peer {
 
-	public identity: string;
-	public publicKey: string;
 	public address: string;
+	public key: string;
 
 	public latitude: number;
 	public longitude: number;
@@ -11,14 +10,12 @@ export class Peer {
 	public countryCode: string;
 
 	constructor(payload: any) {
-		this.identity = payload.identity;
-		this.publicKey = payload.publicKey;
 		this.address = payload.address;
+		this.key = payload.key;
 	}
 
 	isValid(): boolean {
-		return this.identity != null && this.identity.length == 40
-			&& this.publicKey != null && this.publicKey.length > 0
+		return this.key != null && this.key.length > 0
 			&& this.address != null && this.address.length > 0;
 	}
 
