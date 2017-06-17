@@ -1,9 +1,12 @@
 {
+    "manifest_version": 2,
+
     "name": "Locksidian Shard",
     "short_name": "Shard",
+    "version": "0.1.3",
+    "description": "The one vault your data really need",
+
     "start_url": "index.html",
-    "display": "standalone",
-    "orientation": "any",
     "theme_color": "#252525",
     "background_color": "#252525",
     "icons": [
@@ -12,5 +15,8 @@
             "sizes": "406x406",
             "type": "image/png"
         }
-    ]
+    ],
+    
+    "display": "standalone",
+    "orientation": "any"
 }
