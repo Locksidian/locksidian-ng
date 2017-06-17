@@ -12,12 +12,12 @@ declare const particlesJS: any;
 })
 export class ConnectComponent implements OnInit {
 
-	private connecting: boolean;
+	public connecting: boolean;
 
 	constructor(
-		private router: Router,
-		private shardService: ShardService,
-		private snackBar: MdSnackBar
+		public router: Router,
+		public shardService: ShardService,
+		public snackBar: MdSnackBar
 	) {}
 
 	ngOnInit(): void {

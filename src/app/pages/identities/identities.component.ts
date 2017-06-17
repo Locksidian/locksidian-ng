@@ -12,13 +12,13 @@ import {IdentityService} from "../../services/identities/identity.service";
 })
 export class IdentitiesComponent implements OnInit {
 
-	private identities: Array<Identity>;
+	public identities: Array<Identity>;
 
 	constructor(
-		private router: Router,
-		private shardService: ShardService,
-		private identityService: IdentityService,
-		private snackBar: MdSnackBar
+		public router: Router,
+		public shardService: ShardService,
+		public identityService: IdentityService,
+		public snackBar: MdSnackBar
 	) {}
 
 	ngOnInit() {

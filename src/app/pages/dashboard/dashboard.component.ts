@@ -14,13 +14,13 @@ declare const particlesJS: any;
 })
 export class DashboardComponent implements OnInit {
 
-	private metrics: Array<Metric>;
+	public metrics: Array<Metric>;
 
 	constructor(
-		private router: Router,
-		private shardService: ShardService,
-		private metricService: MetricService,
-		private snackBar: MdSnackBar
+		public router: Router,
+		public shardService: ShardService,
+		public metricService: MetricService,
+		public snackBar: MdSnackBar
 	) {}
 
 	ngOnInit(): void {
