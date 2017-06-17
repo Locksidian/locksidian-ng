@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 export class RootComponent {
 
 	constructor(
-		private router: Router,
-		private shardService: ShardService
+		public router: Router,
+		public shardService: ShardService
 	) {}
 
 	showMenu(): boolean {

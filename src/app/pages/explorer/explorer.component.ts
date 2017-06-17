@@ -14,20 +14,20 @@ declare const vis: any;
 })
 export class ExplorerComponent implements OnInit {
 
-	private syncing: boolean;
-	private selectedBlock: Block;
+	public syncing: boolean;
+	public selectedBlock: Block;
 
 	// Vis.js network
 	@ViewChild('explorer')
-	private explorer: ElementRef;
-	private nodes: Array<any>;
-	private edges: Array<any>;
+	public explorer: ElementRef;
+	public nodes: Array<any>;
+	public edges: Array<any>;
 
 	constructor(
-		private router: Router,
-		private shardService: ShardService,
-		private blockService: BlockService,
-		private snackBar: MdSnackBar
+		public router: Router,
+		public shardService: ShardService,
+		public blockService: BlockService,
+		public snackBar: MdSnackBar
 	) {}
 
 	ngOnInit() {

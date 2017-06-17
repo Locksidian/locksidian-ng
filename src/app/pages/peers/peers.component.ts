@@ -14,20 +14,20 @@ declare const vis: any;
 })
 export class PeersComponent implements OnInit {
 
-	private map = {
+	public map = {
 		latitude: 25,
 		longitude: 0,
 		zoom: 3
 	};
 
-	private peers: Array<Peer>;
+	public peers: Array<Peer>;
 
 	constructor(
-		private router: Router,
-		private shardService: ShardService,
-		private peerService: PeerService,
-		private snackBar: MdSnackBar,
-		private dialog: MdDialog
+		public router: Router,
+		public shardService: ShardService,
+		public peerService: PeerService,
+		public snackBar: MdSnackBar,
+		public dialog: MdDialog
 	) {}
 
 	ngOnInit() {
