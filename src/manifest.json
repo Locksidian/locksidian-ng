@@ -1,0 +1,16 @@
+{
+    "name": "Locksidian Shard",
+    "short_name": "Shard",
+    "start_url": "index.html",
+    "display": "standalone",
+    "orientation": "any",
+    "theme_color": "#252525",
+    "background_color": "#252525",
+    "icons": [
+        {
+            "src": "favicon.png",
+            "sizes": "406x406",
+            "type": "image/png"
+        }
+    ]
+}
