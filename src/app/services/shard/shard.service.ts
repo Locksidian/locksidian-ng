@@ -25,20 +25,24 @@ export class ShardService {
 					.map(data => data.json())
 					.subscribe(
 						payload => {
-							let shard = new Shard(payload, address);
+							let shard = new Shard(address, payload);
 
 							if(!shard.isValid())
-								reject({code: 1, msg: 'Remote node provided an invalid identity'});
+								reject({code: 1, msg: 'No Locksidian node hosted at this address'});
+							else if(shard.version !== environment.versionRequirement)
+								reject({code: 2, msg: 'Node version is not compatible with this Shard client (required: v' + environment.versionRequirement + ')'});
 							resolve(shard);
 						},
 						err => reject({code: 0, msg: 'Unable to connect to the remote node', raw: err})
 					);
 			}
 			else {
-				resolve(new Shard({
-					identity: 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
-					publicKey: '6924110cde4fa051bfdc600a60620dc7aa9d3c6a'
-				}, 'https://www.fries.io/'));
+				resolve(new Shard('http://127.0.0.1:8080', {
+					"authors": "Valentin Fries, Aurélien Duval",
+					"package": "locksidian",
+					"description": "The one vault your data really need",
+					"version": "0.1.2"
+				}));
 			}
 		});
 	}

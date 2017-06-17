@@ -28,8 +28,8 @@ export class PeerService {
 						payload => {
 							let peers = [];
 
-							payload.forEach(rawPeer => {
-								let peer = new Peer(rawPeer);
+							payload.forEach(json => {
+								let peer = new Peer(json);
 
 								if (peer.isValid()) {
 									peers.push(peer);
@@ -44,18 +44,15 @@ export class PeerService {
 			else {
 				resolve([
 					new Peer({
-						identity: 'b94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
-						publicKey: '7924110cde4fa051bfdc600a60620dc7aa9d3c6a',
+						key: '7924110cde4fa051bfdc600a60620dc7aa9d3c6a',
 						address: 'http://83.142.147.16:3000'
 					}),
 					new Peer({
-						identity: 'c94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
-						publicKey: '8924110cde4fa051bfdc600a60620dc7aa9d3c6a',
+						key: '8924110cde4fa051bfdc600a60620dc7aa9d3c6a',
 						address: 'https://www.fries.io:443'
 					}),
 					new Peer({
-						identity: 'd94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
-						publicKey: '9924110cde4fa051bfdc600a60620dc7aa9d3c6a',
+						key: '9924110cde4fa051bfdc600a60620dc7aa9d3c6a',
 						address: 'https://reddit.com:443'
 					})
 				]);

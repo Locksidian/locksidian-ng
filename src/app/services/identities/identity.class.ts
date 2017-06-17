@@ -5,7 +5,7 @@ export class Identity {
 
 	constructor(payload: any) {
 		this.hash = payload.hash;
-		this.publicKey = payload.publicKey;
+		this.publicKey = payload.public_key;
 	}
 
 	isValid(): boolean {

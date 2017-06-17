@@ -1,0 +1,26 @@
+<div id="sync" *ngIf="syncing">
+	<img src="assets/img/loading.svg" width="64" height="64" />
+</div>
+
+<div #explorer id="explorer"></div>
+
+<div id="panel" *ngIf="selectedBlock">
+	<table border="0" cellpadding="5" cellspacing="5">
+		<tr>
+			<td><strong>Hash</strong></td>
+			<td>{{selectedBlock.hash}}</td>
+		</tr>
+		<tr>
+			<td><strong>Data</strong></td>
+			<td>{{selectedBlock.data}}</td>
+		</tr>
+		<tr>
+			<td><strong>Data hash</strong></td>
+			<td>{{selectedBlock.dataHash}}</td>
+		</tr>
+		<tr>
+			<td><strong>Timestamp</strong></td>
+			<td>{{selectedBlock.timestamp}}</td>
+		</tr>
+	</table>
+</div>

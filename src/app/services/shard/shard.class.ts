@@ -1,18 +1,26 @@
 export class Shard {
 
-	public identity: string;
-	public publicKey: string;
 	public address: string;
 
-	constructor(payload: any, address: string) {
-		this.identity = payload.identity;
-		this.publicKey = payload.publicKey;
+	public name: string;
+	public version: string;
+	public description: string;
+	public authors: string;
+
+	constructor(address: string, payload: any) {
 		this.address = address;
+
+		this.name = payload.package;
+		this.version = payload.version;
+		this.description = payload.description;
+		this.authors = payload.authors;
 	}
 
 	isValid(): boolean {
-		return this.identity != null && this.identity.length == 40
-			&& this.publicKey != null && this.publicKey.length > 0
+		return this.name != null && this.name.length > 0
+			&& this.version != null && this.version.length > 0
+			&& this.description != null && this.description.length > 0
+			&& this.authors != null && this.authors.length > 0
 			&& this.address != null && this.address.length > 0;
 	}
 }
