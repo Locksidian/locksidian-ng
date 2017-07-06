@@ -32,6 +32,7 @@ import {IdentityService} from "./services/identities/identity.service";
 import {IdentitiesComponent} from "./pages/identities/identities.component";
 import {ExplorerComponent} from "./pages/explorer/explorer.component";
 import {BlockService} from "./services/blocks/block.service";
+import {DragAndDropDirective} from "./directives/drag-and-drop/dnd.directive";
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import {BlockService} from "./services/blocks/block.service";
 		PeersComponent,
 		PeerDialog,
 		IdentitiesComponent,
-		ExplorerComponent
+		ExplorerComponent,
+		DragAndDropDirective
 	],
 	entryComponents: [
 		PeerDialog

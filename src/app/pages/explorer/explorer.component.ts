@@ -4,6 +4,7 @@ import {ShardService} from "../../services/shard/shard.service";
 import {BlockService} from "../../services/blocks/block.service";
 import {MdSnackBar} from "@angular/material";
 import {Block} from "../../services/blocks/block.class";
+import {forEach} from "@angular/router/src/utils/collection";
 
 declare const vis: any;
 

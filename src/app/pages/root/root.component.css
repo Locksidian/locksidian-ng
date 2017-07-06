@@ -61,3 +61,28 @@ md-sidenav {
     bottom: 15px;
     right: 15px;
 }
+
+#dropzone {
+    position: fixed;
+    left: 20px;
+    bottom: 75px;
+
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px 0;
+
+    cursor: pointer;
+    display: table;
+    border: dashed 1px #aaa;
+}
+
+#dropzone .wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#dropzone .wrapper > div {
+    font-size: 0.95em;
+    font-weight: bold;
+    text-align: center;
+}

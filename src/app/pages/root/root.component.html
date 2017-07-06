@@ -27,6 +27,14 @@
 			</md-list-item>
 		</md-list>
 		
+		<div id="dropzone" drag-and-drop [extensions]="[]" (onFilesDrop)="createBlocksFromFiles($event)" (onInvalidFilesDrop)="notifyInvalidFiles($event)">
+			<div class="wrapper">
+				<div>
+					<md-icon>file_download</md-icon>
+				</div>
+			</div>
+		</div>
+		
 		<div id="sidenav-footer">
 			<button md-icon-button (click)="disconnect()" mdTooltip="Logout" mdTooltipPosition="right">
 				<md-icon>power_settings_new</md-icon>
