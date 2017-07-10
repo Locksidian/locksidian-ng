@@ -30,9 +30,10 @@ import {PeerService} from "./services/peers/peer.service";
 import {MetricService} from "./services/metrics/metric.service";
 import {IdentityService} from "./services/identities/identity.service";
 import {IdentitiesComponent} from "./pages/identities/identities.component";
-import {ExplorerComponent} from "./pages/explorer/explorer.component";
+import {ExplorerComponent, QRBlockDialog} from "./pages/explorer/explorer.component";
 import {BlockService} from "./services/blocks/block.service";
 import {DragAndDropDirective} from "./directives/drag-and-drop/dnd.directive";
+import {QRCodeModule} from "angular2-qrcode";
 
 @NgModule({
 	declarations: [
@@ -44,10 +45,12 @@ import {DragAndDropDirective} from "./directives/drag-and-drop/dnd.directive";
 		PeerDialog,
 		IdentitiesComponent,
 		ExplorerComponent,
+		QRBlockDialog,
 		DragAndDropDirective
 	],
 	entryComponents: [
-		PeerDialog
+		PeerDialog,
+		QRBlockDialog
 	],
 	imports: [
 		RouterModule.forRoot(AppRoutes),
@@ -70,7 +73,8 @@ import {DragAndDropDirective} from "./directives/drag-and-drop/dnd.directive";
 
 		AgmCoreModule.forRoot({
 			apiKey: environment.googleMaps.apiKey
-		})
+		}),
+		QRCodeModule
 	],
 	providers: [
 		ShardService,

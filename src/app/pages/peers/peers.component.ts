@@ -64,7 +64,6 @@ export class PeersComponent implements OnInit {
 			width: '500px'
 		});
 		peerDialog.componentInstance.peer = peer;
-
 	}
 
 	notify(message: string) {
@@ -78,8 +77,6 @@ export class PeersComponent implements OnInit {
 	styleUrls: ['peer.dialog.css']
 })
 export class PeerDialog {
-
 	public peer: Peer;
-
 	constructor(private dialogRef: MdDialogRef<PeerDialog>) {}
 }

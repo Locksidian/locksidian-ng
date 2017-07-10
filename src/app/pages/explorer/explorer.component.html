@@ -7,6 +7,14 @@
 <div id="panel" *ngIf="selectedBlock">
 	<table border="0" cellpadding="5" cellspacing="5">
 		<tr>
+			<td>
+				<button md-button (click)="showQRCode(selectedBlock)">
+					<md-icon>link</md-icon> QRCode
+				</button>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
 			<td><strong>Hash</strong></td>
 			<td>{{selectedBlock.hash}}</td>
 		</tr>
