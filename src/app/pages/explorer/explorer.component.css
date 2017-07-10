@@ -22,5 +22,8 @@
 	color: #F5F5F5;
 	background-color: #3D454D;
 	border-top: 7px solid #485157;
+}
+
+#panel table {
 	overflow-x: scroll;
 }

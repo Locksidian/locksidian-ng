@@ -2,9 +2,8 @@ import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {Router} from "@angular/router";
 import {ShardService} from "../../services/shard/shard.service";
 import {BlockService} from "../../services/blocks/block.service";
-import {MdSnackBar} from "@angular/material";
+import {MdDialog, MdDialogRef, MdSnackBar} from "@angular/material";
 import {Block} from "../../services/blocks/block.class";
-import {forEach} from "@angular/router/src/utils/collection";
 
 declare const vis: any;
 
@@ -28,7 +27,8 @@ export class ExplorerComponent implements OnInit {
 		public router: Router,
 		public shardService: ShardService,
 		public blockService: BlockService,
-		public snackBar: MdSnackBar
+		public snackBar: MdSnackBar,
+		public dialog: MdDialog
 	) {}
 
 	ngOnInit() {
@@ -123,6 +123,9 @@ export class ExplorerComponent implements OnInit {
 	onBlockSelected(params: any) {
 		let blockHash = params.nodes;
 
+		if(blockHash == '')
+			return;
+
 		this.blockService.get(blockHash)
 			.then(block => this.selectedBlock = block)
 			.catch(err => {
@@ -131,7 +134,31 @@ export class ExplorerComponent implements OnInit {
 			});
 	}
 
+	showQRCode(block: Block): void {
+		let shard = this.shardService.get();
+
+		if(!shard) {
+			this.notify('Shard is not connected to any Locksidian node');
+			return;
+		}
+
+		let qrblockDialog = this.dialog.open(QRBlockDialog, {
+			width: '250px'
+		});
+
+		qrblockDialog.componentInstance.url = shard.address + '/blocks/' + block.hash;
+	}
+
 	notify(message: string) {
 		this.snackBar.open(message, "Close", {duration: 5000});
 	}
+}
+
+@Component({
+	selector: 'qrblock-dialog',
+	templateUrl: 'qrblock.dialog.html'
+})
+export class QRBlockDialog {
+	public url: string;
+	constructor(private dialogRef: MdDialogRef<QRBlockDialog>) {}
 }
