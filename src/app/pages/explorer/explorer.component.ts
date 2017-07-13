@@ -4,6 +4,7 @@ import {ShardService} from "../../services/shard/shard.service";
 import {BlockService} from "../../services/blocks/block.service";
 import {MdDialog, MdDialogRef, MdSnackBar} from "@angular/material";
 import {Block} from "../../services/blocks/block.class";
+import {RootComponent} from "../root/root.component";
 
 declare const vis: any;
 
@@ -29,7 +30,9 @@ export class ExplorerComponent implements OnInit {
 		public blockService: BlockService,
 		public snackBar: MdSnackBar,
 		public dialog: MdDialog
-	) {}
+	) {
+		this.blockService.documentSubject.subscribe(_ => this.syncChain());
+	}
 
 	ngOnInit() {
 		if(!this.shardService.get()) {
@@ -127,7 +130,10 @@ export class ExplorerComponent implements OnInit {
 			return;
 
 		this.blockService.get(blockHash)
-			.then(block => this.selectedBlock = block)
+			.then(block =>
+				//this.selectedBlock = block
+				this.showQRCode(block)
+			)
 			.catch(err => {
 				console.error(JSON.stringify(err));
 				this.notify(err.msg);

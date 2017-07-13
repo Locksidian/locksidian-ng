@@ -5,14 +5,19 @@ import {environment} from "../../../environments/environment";
 import {Block} from "./block.class";
 import * as CryptoJS from "crypto-js";
 import {BlockDocument} from "./document.class";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class BlockService {
 
+	public documentSubject: Subject<string>;
+
 	constructor(
 		private http: Http,
 		private shardService: ShardService
-	) {}
+	) {
+		this.documentSubject = new Subject();
+	}
 
 	getHead(): Promise<string> {
 		return new Promise((resolve, reject) => {
@@ -79,19 +84,32 @@ export class BlockService {
 				if(!shard)
 					reject({code: 1, msg: 'Shard is not connected to any Locksidian node'});
 
-				let hash = CryptoJS.SHA512("Hello World").toString();
-				let document = new BlockDocument(file.name, file.type, hash);
+				let reader = new FileReader();
 
-				this.http.post(shard.address + '/blocks', JSON.stringify(document))
-					.subscribe(
-						res => resolve(res.json().block),
-						err => {
-							if(err.status == 409)
-								reject({code: err.status, msg: 'Document is already stored!', raw: err})
-							else
-								reject({code: err.status, msg: 'Unable to connect to the remote node', raw: err})
-						}
-					);
+				reader.onload = () => {
+					let content = reader.result;
+
+					let hash = CryptoJS.SHA512(content).toString();
+					let document = new BlockDocument(hash);
+
+					this.http.post(shard.address + '/blocks', JSON.stringify(document))
+						.subscribe(
+							res => {
+								let hash = res.json().block;
+
+								this.documentSubject.next(hash);
+								resolve(hash);
+							},
+							err => {
+								if(err.status == 409)
+									reject({code: err.status, msg: err.json().error, raw: err});
+								else
+									reject({code: err.status, msg: 'Unable to connect to the remote node', raw: err});
+							}
+						);
+				};
+
+				reader.readAsText(file);
 			}
 			else {
 				resolve('42dd8fe5ccb19ba61c4c0873d391e9879c95a64f');

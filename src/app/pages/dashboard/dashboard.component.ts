@@ -4,6 +4,7 @@ import {ShardService} from "../../services/shard/shard.service";
 import {MetricService} from "../../services/metrics/metric.service";
 import {MdSnackBar} from "@angular/material";
 import {Metric} from "../../services/metrics/metric.class";
+import {BlockService} from "../../services/blocks/block.service";
 
 declare const particlesJS: any;
 
@@ -20,8 +21,11 @@ export class DashboardComponent implements OnInit {
 		public router: Router,
 		public shardService: ShardService,
 		public metricService: MetricService,
+		public blockService: BlockService,
 		public snackBar: MdSnackBar
-	) {}
+	) {
+		this.blockService.documentSubject.subscribe(_ => this.loadMetrics());
+	}
 
 	ngOnInit(): void {
 		if(!this.shardService.get()) {
