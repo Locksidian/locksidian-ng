@@ -3,6 +3,8 @@ import {ShardService} from "../../services/shard/shard.service";
 import {Router} from "@angular/router";
 import {MdSnackBar} from "@angular/material";
 import {BlockService} from "../../services/blocks/block.service";
+import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 
 @Component({
 	selector: 'app-root',
@@ -29,17 +31,18 @@ export class RootComponent {
 	}
 
 	createBlocksFromFiles(files: Array<File>) {
-		files.forEach(file =>
+		files.forEach(file => {
 			this.blockService.createBlock(file)
-				.then(block => {
-					console.log(block);
-					this.notify(file.name + ' stored in block ' + block);
+				.then(hash => {
+					console.log(hash);
+					this.notify(file.name + ' stored in block ' + hash);
 				})
 				.catch(err => {
 					console.error(JSON.stringify(err));
 					this.notify(err.msg);
-				})
-		);
+				});
+			return;
+		});
 	}
 
 	notifyInvalidFiles(files: Array<File>) {
