@@ -4,7 +4,6 @@ import {ShardService} from "../../services/shard/shard.service";
 import {BlockService} from "../../services/blocks/block.service";
 import {MdDialog, MdDialogRef, MdSnackBar} from "@angular/material";
 import {Block} from "../../services/blocks/block.class";
-import {RootComponent} from "../root/root.component";
 
 declare const vis: any;
 
@@ -92,7 +91,6 @@ export class ExplorerComponent implements OnInit {
 			});
 
 		this.redrawNetwork();
-		this.syncing = false;
 	}
 
 	syncBlock(hash: string) {
@@ -111,10 +109,12 @@ export class ExplorerComponent implements OnInit {
 					});
 				}
 
-				this.redrawNetwork();
-
 				if(block.previous) {
 					this.syncBlock(block.previous);
+				}
+				else {
+					this.redrawNetwork();
+					this.syncing = false;
 				}
 			})
 			.catch(err => {

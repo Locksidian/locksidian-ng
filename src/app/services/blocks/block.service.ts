@@ -101,8 +101,12 @@ export class BlockService {
 								resolve(hash);
 							},
 							err => {
-								if(err.status == 409)
-									reject({code: err.status, msg: err.json().error, raw: err});
+								if(err.status == 409) {
+									let error = err.json().error;
+									let hash = error.substr(error.lastIndexOf(" ") + 1);
+
+									reject({code: err.status, msg: 'Document is alredy stored in block ' + hash, raw: err});
+								}
 								else
 									reject({code: err.status, msg: 'Unable to connect to the remote node', raw: err});
 							}

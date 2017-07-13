@@ -1,7 +1,4 @@
-<div id="sync" *ngIf="syncing">
-	<img src="assets/img/loading.svg" width="64" height="64" />
-</div>
-
+<app-loading *ngIf="syncing"></app-loading>
 <div #explorer id="explorer"></div>
 
 <div id="panel" *ngIf="selectedBlock">
